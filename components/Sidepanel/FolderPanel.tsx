@@ -8,11 +8,11 @@ const FolderPanel: React.FC = () => {
   const { REPO_OWNER, REPO_NAME, REPO_BRANCH } = useContext(RepoContext);
 
   return (
-    <div className="border border-[#aaa] min-h-[50px] rounded-[10px] py-2 px-6 gap-2 grid">
+    <div className="border border-[#aaa] min-h-[50px] rounded-[10px] py-2 px-6 gap-2 grid pb-4">
       <ItemRow
         key={'/'}
         className="py-2 text-sm border rounded-[10px] border-[#aaa] px-3 w-fit mt-2 ml-[-12px]"
-        href={`gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}`}
+        href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}`}
         icon={faHome}
         title={'Home'}
       />
@@ -20,7 +20,7 @@ const FolderPanel: React.FC = () => {
         <ItemRow
           key={path}
           className="py-2 text-sm"
-          href={`gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${path}`}
+          href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${path}`}
           icon={faFolder}
           title={path}
         />
