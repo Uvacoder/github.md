@@ -3,6 +3,8 @@ import { GetServerSidePropsContext } from 'next';
 import axios from 'axios';
 import { FoldersContext, RepoContext } from '../../../../../contexts';
 import { PostRow, Sidepanel } from '../../../../../components';
+import { sanitize } from 'isomorphic-dompurify';
+import { marked } from 'marked';
 
 interface ITree {
   path: string;
@@ -16,6 +18,10 @@ interface IParams {
   repo_name?: string;
   repo_branch?: string;
   repo_path?: string[];
+}
+
+interface IProps {
+  markdownFile: string;
 }
 
 const findMarkdown = (
@@ -50,9 +56,10 @@ const getUniqueFolders = (tree: ITree[]) => {
   return Object.keys(uniqueFolders).map((value) => ({ path: value }));
 };
 
-const RepoPage: React.FC<{ tree: ITree[]; params: IParams }> = ({
+const RepoPage: React.FC<{ tree: ITree[]; params: IParams; file: string }> = ({
   tree,
   params,
+  file,
 }) => {
   const getFolders = (tree: ITree[]) => {
     let _files = findMarkdown(tree, params);
@@ -77,7 +84,10 @@ const RepoPage: React.FC<{ tree: ITree[]; params: IParams }> = ({
         </div>
         <div className="col-span-9 mx-4">
           {params.repo_path?.join('/').includes('.md') ? (
-            <div>IT"S A MARKDOWN FILE</div>
+            <div
+              className="prose prose-invert"
+              dangerouslySetInnerHTML={{ __html: file }}
+            ></div>
           ) : (
             <div className="grid gap-10">
               {tree?.map(({ path, url, size }) => (
@@ -100,8 +110,7 @@ const RepoPage: React.FC<{ tree: ITree[]; params: IParams }> = ({
 export default RepoPage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { params } = context;
-
+  const params: IParams = context.params || {};
   const loadStructure = () => {
     return axios
       .get(
@@ -116,6 +125,27 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         return markdownFiles;
       });
   };
+  const loadMarkdownFile = () => {
+    return axios
+      .get(
+        `https://raw.githubusercontent.com/${params?.repo_user}/${
+          params?.repo_name
+        }/${params?.repo_branch}/${params?.repo_path?.join('/')}`,
+        {
+          headers: {
+            Accept: 'application/vnd.github+json',
+          },
+        }
+      )
+      .then(({ data }) =>
+        sanitize(marked(data), { USE_PROFILES: { html: true } })
+      );
+  };
+
   const tree = await loadStructure();
+  if (params?.repo_path?.join('/').includes('.md')) {
+    const file = await loadMarkdownFile();
+    return { props: { tree, params, file } };
+  }
   return { props: { tree, params } };
 }
