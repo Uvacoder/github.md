@@ -18,7 +18,7 @@ const ButtonLink: React.FC<IProps> = ({
   return (
     <Link href={href}>
       <div className="flex bg-white text-[#222] rounded-[10px] px-4 py-1 items-center cursor-pointer min-w-[120px]">
-        <FontAwesomeIcon className="mr-2 w-[2rem] h-[2rem]" icon={icon} />
+        <FontAwesomeIcon className="mr-2 w-[20px] h-[20px]" icon={icon} />
         <div>{text}</div>
       </div>
     </Link>

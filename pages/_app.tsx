@@ -1,20 +1,24 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import { Header, Sidepanel } from '../components';
+import { Header } from '../components';
+import { RepoContext } from '../contexts';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
-      <Header />
-      <div className="grid gap-4 grid-cols-12 container mx-auto mt-4">
-        <div className="col-span-2">
-          <Sidepanel />
-        </div>
-        <div className="col-span-10">
+    <RepoContext.Provider
+      value={{
+        REPO_OWNER: 'ilyasudakov',
+        REPO_NAME: 'markdown_blog',
+        REPO_BRANCH: 'main',
+      }}
+    >
+      <div>
+        <Header />
+        <div className="grid">
           <Component {...pageProps} />
         </div>
       </div>
-    </div>
+    </RepoContext.Provider>
   );
 }
 
