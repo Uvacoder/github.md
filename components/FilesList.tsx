@@ -14,7 +14,10 @@ const FilesList: React.FC<{ tree: IFolderTree[] }> = ({ tree }) => {
   return (
     <div className="grid gap-10">
       {tree
-        ?.filter(({ path }) => REPO_CUR_PATH === removeFileFromPath(path))
+        ?.filter(
+          ({ path }) =>
+            REPO_CUR_PATH === '/' || REPO_CUR_PATH === removeFileFromPath(path)
+        )
         .map(({ path, url, size }) => (
           <div key={url}>
             <PostRow
