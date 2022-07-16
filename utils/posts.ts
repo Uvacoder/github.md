@@ -83,6 +83,14 @@ export const loadRepoInfo = (params: IRepoParams) => {
     .then(({ data }) => data);
 };
 
+export const loadUserInfo = (username: string) => {
+  return axios
+    .get(`https://api.github.com/users/${username}/repos`, {
+      // headers: { Authorization: `token ${process.env.GITHUB_AUTH_TOKEN}` },
+    })
+    .then(({ data }) => data);
+};
+
 export const removeFileFromPath = (path: string | string[]) => {
   let _path = path;
   if (typeof _path === 'string') {

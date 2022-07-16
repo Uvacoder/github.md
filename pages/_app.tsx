@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Header />
-      <div className="grid">
+      <div className="grid container mx-auto mt-4">
         <Component {...pageProps} />
       </div>
     </div>

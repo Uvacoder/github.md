@@ -1,11 +1,7 @@
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
-import { FilesList, RepoLayout } from '../../../../../../components';
-import {
-  IFolderTree,
-  IRepoInfo,
-  IRepoParams,
-} from '../../../../../../typescript/types';
+import { FilesList, RepoLayout } from '@/components';
+import { IFolderTree, IRepoInfo, IRepoParams } from '@/typescript/types';
 import {
   loadMarkdownFileIsomorphic,
   loadRepoInfo,

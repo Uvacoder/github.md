@@ -20,3 +20,12 @@ export interface IRepoInfo {
   html_url: string;
   description: string;
 }
+
+export interface IUserRepos {
+  owner: {
+    login: string;
+    avatar_url: string;
+  };
+  name: string;
+  description: string;
+}
