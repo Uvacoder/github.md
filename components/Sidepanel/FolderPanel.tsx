@@ -1,6 +1,6 @@
 import { faFolder, faHome } from '@fortawesome/free-solid-svg-icons';
 import React, { useContext } from 'react';
-import { FoldersContext, RepoContext } from '../../contexts';
+import { FoldersContext, RepoContext } from '@/contexts';
 import ItemRow from '../ItemRow';
 
 const FolderPanel: React.FC = () => {

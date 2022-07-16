@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { IRepoInfo } from '../typescript/types';
+import { IRepoInfo } from '@/typescript/types';
 
 const RepoContext = createContext<{
   REPO_OWNER: string;

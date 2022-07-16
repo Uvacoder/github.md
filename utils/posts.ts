@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { sanitize } from 'isomorphic-dompurify';
 import { marked } from 'marked';
-import { IFolderTree, IRepoParams } from '../typescript/types';
+import { IFolderTree, IRepoParams } from '@/typescript/types';
 
 export const getMarkDownFile = async (url: string) => {
   return await axios

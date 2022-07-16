@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { RepoContext } from '../contexts';
-import { IFolderTree } from '../typescript/types';
-import { getFileFromPath, removeFileFromPath } from '../utils';
+import { RepoContext } from '@/contexts';
+import { IFolderTree } from '@/typescript/types';
+import { getFileFromPath, removeFileFromPath } from '@/utils';
 import PostRow from './PostRow';
 
 const FilesList: React.FC<{ tree: IFolderTree[] }> = ({ tree }) => {

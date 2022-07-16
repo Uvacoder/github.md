@@ -6,7 +6,7 @@ import {
   loadMarkdownFileIsomorphic,
   loadRepoInfo,
   loadRepoStructure,
-} from '../../../../../../utils';
+} from '@/utils';
 
 const RepoPage: React.FC<{
   tree: IFolderTree[];

@@ -1,7 +1,7 @@
 import React from 'react';
-import { FoldersContext, RepoContext } from '../../contexts';
-import { IFolderTree, IRepoInfo, IRepoParams } from '../../typescript/types';
-import { findMarkdownFiles, removeFileFromPath } from '../../utils';
+import { FoldersContext, RepoContext } from '@/contexts';
+import { IFolderTree, IRepoInfo, IRepoParams } from '@/typescript/types';
+import { findMarkdownFiles, removeFileFromPath } from '@/utils';
 import Sidepanel from '../Sidepanel/Sidepanel';
 
 const getUniqueFolders = (tree: IFolderTree[], cur_path: string) => {

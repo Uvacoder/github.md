@@ -11,7 +11,7 @@ const UserPage: React.FC<{ repos: IUserRepos[] }> = ({ repos }) => {
       {repos.length > 0 ? <UserSmall owner={repos[0].owner} /> : null}
       <div className="grid gap-6 mt-4">
         {repos.map((repo) => (
-          <RepoRow repo={repo} />
+          <RepoRow key={repo.name} repo={repo} />
         ))}
       </div>
     </>

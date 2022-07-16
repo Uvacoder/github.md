@@ -3,7 +3,7 @@ import ItemRow from './ItemRow';
 import { faAlignLeft } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { calcReadingTime } from '../utils';
+import { calcReadingTime } from '@/utils';
 
 interface IProps {
   title: string;
