@@ -1,15 +1,20 @@
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { PostRow, RepoLayout } from '../../../../../components';
-import { loadRepoStructure } from '../../../../../utils';
-import { IFolderTree, IRepoParams } from '../../../../../typescript/types';
+import { loadRepoInfo, loadRepoStructure } from '../../../../../utils';
+import {
+  IFolderTree,
+  IRepoInfo,
+  IRepoParams,
+} from '../../../../../typescript/types';
 
-const RepoPage: React.FC<{ tree: IFolderTree[]; params: IRepoParams }> = ({
-  tree,
-  params,
-}) => {
+const RepoPage: React.FC<{
+  tree: IFolderTree[];
+  params: IRepoParams;
+  info: IRepoInfo;
+}> = ({ tree, params, info }) => {
   return (
-    <RepoLayout tree={tree} params={params}>
+    <RepoLayout tree={tree} params={params} info={info}>
       <div className="grid gap-10">
         {tree?.map(({ path, url, size }) => (
           <div key={url}>
@@ -29,6 +34,7 @@ export default RepoPage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const params: IRepoParams = context.params || {};
+  const info = await loadRepoInfo(params);
   const tree = await loadRepoStructure(params);
-  return { props: { tree, params } };
+  return { props: { tree, params, info } };
 }

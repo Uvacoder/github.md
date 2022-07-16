@@ -72,12 +72,23 @@ export const loadRepoStructure = (params: IRepoParams) => {
     });
 };
 
+export const loadRepoInfo = (params: IRepoParams) => {
+  return axios
+    .get(
+      `https://api.github.com/repos/${params?.repo_user}/${params?.repo_name}`,
+      {
+        // headers: { Authorization: `token ${process.env.GITHUB_AUTH_TOKEN}` },
+      }
+    )
+    .then(({ data }) => data);
+};
+
 export const removeFileFromPath = (path: string | string[]) => {
   let _path = path;
   if (typeof _path === 'string') {
     _path = _path.split('/');
   }
-  if (_path[_path.length - 1].includes('.md')) _path.pop();
+  if (_path.length > 0 && _path[_path.length - 1].includes('.md')) _path.pop();
   return _path.join('/');
 };
 

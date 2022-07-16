@@ -1,22 +1,25 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { GetServerSidePropsContext } from 'next';
-import { PostRow, RepoLayout } from '../../../../../components';
-import { IFolderTree, IRepoParams } from '../../../../../typescript/types';
+import { FilesList, RepoLayout } from '../../../../../components';
 import {
-  getFileFromPath,
+  IFolderTree,
+  IRepoInfo,
+  IRepoParams,
+} from '../../../../../typescript/types';
+import {
   loadMarkdownFileIsomorphic,
+  loadRepoInfo,
   loadRepoStructure,
-  removeFileFromPath,
 } from '../../../../../utils';
-import { RepoContext } from '../../../../../contexts';
 
 const RepoPage: React.FC<{
   tree: IFolderTree[];
   params: IRepoParams;
   file: string;
-}> = ({ tree, params, file }) => {
+  info: IRepoInfo;
+}> = ({ tree, params, file, info }) => {
   return (
-    <RepoLayout tree={tree} params={params} file={file}>
+    <RepoLayout tree={tree} params={params} file={file} info={info}>
       {params.repo_path?.join('/').includes('.md') ? (
         <div
           className="prose prose-invert"
@@ -29,38 +32,15 @@ const RepoPage: React.FC<{
   );
 };
 
-const FilesList: React.FC<{ tree: IFolderTree[] }> = ({ tree }) => {
-  const {
-    REPO_OWNER,
-    REPO_BRANCH,
-    REPO_NAME,
-    REPO_CUR_PATH = '',
-  } = useContext(RepoContext);
-  return (
-    <div className="grid gap-10">
-      {tree
-        ?.filter(({ path }) => REPO_CUR_PATH === removeFileFromPath(path))
-        .map(({ path, url, size }) => (
-          <div key={url}>
-            <PostRow
-              href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${path}`}
-              title={getFileFromPath(path)}
-              size={size}
-            />
-          </div>
-        ))}
-    </div>
-  );
-};
-
 export default RepoPage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const params: IRepoParams = context.params || {};
   const tree = await loadRepoStructure(params);
+  const info = await loadRepoInfo(params);
   if (params?.repo_path?.join('/').includes('.md')) {
     const file = await loadMarkdownFileIsomorphic(params);
-    return { props: { tree, params, file } };
+    return { props: { tree, params, file, info } };
   }
-  return { props: { tree, params } };
+  return { props: { tree, params, info } };
 }

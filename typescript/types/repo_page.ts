@@ -11,3 +11,12 @@ export interface IRepoParams {
   repo_branch?: string;
   repo_path?: string[];
 }
+
+export interface IRepoInfo {
+  id: number;
+  name: string;
+  full_name: string;
+  owner: { avatar_url: string; login: string };
+  html_url: string;
+  description: string;
+}

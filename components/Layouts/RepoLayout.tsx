@@ -1,6 +1,6 @@
 import React from 'react';
 import { FoldersContext, RepoContext } from '../../contexts';
-import { IFolderTree, IRepoParams } from '../../typescript/types';
+import { IFolderTree, IRepoInfo, IRepoParams } from '../../typescript/types';
 import { findMarkdownFiles, removeFileFromPath } from '../../utils';
 import Sidepanel from '../Sidepanel/Sidepanel';
 
@@ -27,7 +27,8 @@ const RepoLayout: React.FC<{
   params: IRepoParams;
   file?: string;
   children?: React.ReactNode;
-}> = ({ tree, params, children }) => {
+  info: IRepoInfo;
+}> = ({ tree, params, children, info }) => {
   const getOnlyFolders = (tree: IFolderTree[], path: string[] = []) => {
     let _files = findMarkdownFiles(tree, params);
     const cur_path = removeFileFromPath([...path]);
@@ -49,13 +50,14 @@ const RepoLayout: React.FC<{
         REPO_OWNER: params?.repo_user || '',
         REPO_NAME: params?.repo_name || '',
         REPO_BRANCH: params?.repo_branch || '',
-        REPO_CUR_PATH: params?.repo_path?.join('/') || '',
+        REPO_CUR_PATH: params?.repo_path?.join('/') ?? '/',
+        repoInfo: info,
       }}
     >
       <div className="grid gap-4 grid-cols-12 container mx-auto mt-4">
         <div className="col-span-3">
           <FoldersContext.Provider
-            value={{ folders: getOnlyFolders(tree, params?.repo_path) }}
+            value={{ folders: getOnlyFolders(tree, params?.repo_path ?? []) }}
           >
             <Sidepanel />
           </FoldersContext.Provider>
