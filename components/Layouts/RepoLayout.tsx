@@ -54,7 +54,7 @@ const RepoLayout: React.FC<{
         repoInfo: info,
       }}
     >
-      <div className="grid gap-4 grid-cols-12 mx-auto mt-4">
+      <div className="grid gap-4 grid-cols-12 mx-auto w-full">
         <div className="col-span-3">
           <FoldersContext.Provider
             value={{ folders: getOnlyFolders(tree, params?.repo_path ?? []) }}
