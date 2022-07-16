@@ -21,7 +21,7 @@ const FolderPanel: React.FC = () => {
         className={`${
           REPO_CUR_PATH === '/' ? rowStyles.active : rowStyles.default
         } mt-2`}
-        href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}`}
+        href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/`}
         icon={faHome}
         title={'Home'}
       />

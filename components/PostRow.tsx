@@ -13,7 +13,7 @@ interface IProps {
 
 const PostRow: React.FC<IProps> = ({ title, href, size = 100 }) => {
   return (
-    <ItemRow href={href} icon={faAlignLeft} title={title}>
+    <ItemRow href={href} icon={faAlignLeft} title={title} className="text-xl">
       <div className="flex items-center">
         <FontAwesomeIcon
           className="mr-2 w-[0.6rem] h-[0.6rem]"

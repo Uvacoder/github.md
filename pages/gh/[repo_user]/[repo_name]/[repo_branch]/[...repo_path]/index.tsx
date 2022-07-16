@@ -1,16 +1,16 @@
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
-import { FilesList, RepoLayout } from '../../../../../components';
+import { FilesList, RepoLayout } from '../../../../../../components';
 import {
   IFolderTree,
   IRepoInfo,
   IRepoParams,
-} from '../../../../../typescript/types';
+} from '../../../../../../typescript/types';
 import {
   loadMarkdownFileIsomorphic,
   loadRepoInfo,
   loadRepoStructure,
-} from '../../../../../utils';
+} from '../../../../../../utils';
 
 const RepoPage: React.FC<{
   tree: IFolderTree[];
@@ -21,10 +21,12 @@ const RepoPage: React.FC<{
   return (
     <RepoLayout tree={tree} params={params} file={file} info={info}>
       {params.repo_path?.join('/').includes('.md') ? (
-        <div
-          className="prose prose-invert"
-          dangerouslySetInnerHTML={{ __html: file }}
-        ></div>
+        <>
+          <div
+            className="prose prose-invert"
+            dangerouslySetInnerHTML={{ __html: file }}
+          ></div>
+        </>
       ) : (
         <FilesList tree={tree} />
       )}
