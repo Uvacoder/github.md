@@ -2,6 +2,7 @@ import axios from 'axios';
 import { sanitize } from 'isomorphic-dompurify';
 import { marked } from 'marked';
 import { IFolderTree, IRepoParams } from '@/typescript/types';
+import { Session } from 'next-auth';
 
 export const getMarkDownFile = async (url: string) => {
   return await axios
@@ -23,23 +24,6 @@ export const calcReadingTime = (size: number) => {
   return Math.floor(words_time + bonus);
 };
 
-export const loadMarkdownFileIsomorphic = (params: IRepoParams) => {
-  return axios
-    .get(
-      `https://raw.githubusercontent.com/${params?.repo_user}/${
-        params?.repo_name
-      }/${params?.repo_branch}/${params?.repo_path?.join('/')}`,
-      {
-        headers: {
-          Accept: 'application/vnd.github+json',
-        },
-      }
-    )
-    .then(({ data }) =>
-      sanitize(marked(data), { USE_PROFILES: { html: true } })
-    );
-};
-
 export const findMarkdownFiles = (
   tree: IFolderTree[],
   repo_info: IRepoParams = { repo_name: '', repo_user: '', repo_branch: '' }
@@ -57,13 +41,18 @@ const getFileLocation = (filePath: string = '', repo_info: IRepoParams) => {
   return `https://raw.githubusercontent.com/${repo_info.repo_user}/${repo_info.repo_name}/${repo_info.repo_branch}/${filePath}`;
 };
 
-export const loadRepoStructure = (params: IRepoParams) => {
+export const loadRepoStructure = (
+  params: IRepoParams,
+  session: Session | null
+) => {
   return axios
     .get(
       `https://api.github.com/repos/${params?.repo_user}/${params?.repo_name}/git/trees/${params?.repo_branch}?recursive=true`,
-      {
-        // headers: { Authorization: `token ${process.env.GITHUB_AUTH_TOKEN}` },
-      }
+      session
+        ? {
+            headers: { Authorization: `token ${session.accessToken}` },
+          }
+        : undefined
     )
     .then(({ data }) => {
       const { tree: _tree } = data;
@@ -72,23 +61,51 @@ export const loadRepoStructure = (params: IRepoParams) => {
     });
 };
 
-export const loadRepoInfo = (params: IRepoParams) => {
+export const loadRepoInfo = (params: IRepoParams, session: Session | null) => {
   return axios
     .get(
       `https://api.github.com/repos/${params?.repo_user}/${params?.repo_name}`,
-      {
-        // headers: { Authorization: `token ${process.env.GITHUB_AUTH_TOKEN}` },
-      }
+      session
+        ? {
+            headers: { Authorization: `token ${session.accessToken}` },
+          }
+        : undefined
     )
     .then(({ data }) => data);
 };
 
-export const loadUserInfo = (username: string) => {
+export const loadUserInfo = (username: string, session: Session | null) => {
   return axios
-    .get(`https://api.github.com/users/${username}/repos`, {
-      // headers: { Authorization: `token ${process.env.GITHUB_AUTH_TOKEN}` },
-    })
+    .get(
+      `https://api.github.com/users/${username}/repos`,
+      session
+        ? {
+            headers: { Authorization: `token ${session.accessToken}` },
+          }
+        : undefined
+    )
     .then(({ data }) => data);
+};
+
+export const loadMarkdownFileIsomorphic = (
+  params: IRepoParams,
+  session: Session | null
+) => {
+  return axios
+    .get(
+      `https://raw.githubusercontent.com/${params?.repo_user}/${
+        params?.repo_name
+      }/${params?.repo_branch}/${params?.repo_path?.join('/')}`,
+      {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          ...(session ? { Authorization: `token ${session.accessToken}` } : {}),
+        },
+      }
+    )
+    .then(({ data }) =>
+      sanitize(marked(data), { USE_PROFILES: { html: true } })
+    );
 };
 
 export const removeFileFromPath = (path: string | string[]) => {

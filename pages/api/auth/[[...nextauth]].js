@@ -18,15 +18,22 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ profile, token }) {
+    async jwt({ profile, token, account }) {
       if (profile) {
         token.login = profile.login;
+      }
+      if (account) {
+        token.accessToken = account.access_token;
       }
       return token;
     },
     async session({ session, token }) {
       // console.log('session token: ', session);
-      return { ...session, user: { ...session.user, login: token.login } };
+      return {
+        ...session,
+        accessToken: token.accessToken,
+        user: { ...session.user, login: token.login },
+      };
     },
   },
 });

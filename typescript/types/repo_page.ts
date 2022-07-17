@@ -28,4 +28,7 @@ export interface IUserRepos {
   };
   name: string;
   description: string;
+  default_branch: string;
+  stargazers_count: number;
+  forks_count: number;
 }

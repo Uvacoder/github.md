@@ -7,6 +7,8 @@ import {
   loadRepoInfo,
   loadRepoStructure,
 } from '@/utils';
+import { getToken } from 'next-auth/jwt';
+import { getSession } from 'next-auth/react';
 
 const RepoPage: React.FC<{
   tree: IFolderTree[];
@@ -34,23 +36,20 @@ export default RepoPage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const params: IRepoParams = context.params || {};
-  const tree = await loadRepoStructure(params);
-  const info = await loadRepoInfo(params);
-  //redirect repos with 1 file only to that file
-  if (tree.length === 1) {
-    const path = tree[0].path;
-    console.log(tree[0], path);
-    const file = await loadMarkdownFileIsomorphic(params);
-    context.res.setHeader(
-      'location',
-      `/gh/${params.repo_user}/${params.repo_name}/${params.repo_branch}/${path}`
-    );
-    context.res.statusCode = 302;
-    context.res.end();
-    return { props: { tree, params, info, file } };
+  const session = await getSession(context);
+  const tree = await loadRepoStructure(params, session);
+  const info = await loadRepoInfo(params, session);
+  // TODO redirect repos with 1 file only to that file
+  if (tree.length === 1 && tree[0].path !== params.repo_path?.join('/')) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/gh/${params.repo_user}/${params.repo_name}/${params.repo_branch}/${tree[0].path}`,
+      },
+    };
   }
   if (params?.repo_path?.join('/').includes('.md')) {
-    const file = await loadMarkdownFileIsomorphic(params);
+    const file = await loadMarkdownFileIsomorphic(params, session);
     return { props: { tree, params, file, info } };
   }
   return { props: { tree, params, info } };

@@ -13,20 +13,25 @@ const FilesList: React.FC<{ tree: IFolderTree[] }> = ({ tree }) => {
   } = useContext(RepoContext);
   return (
     <div className="grid gap-10">
-      {tree
-        ?.filter(
-          ({ path }) =>
-            REPO_CUR_PATH === '/' || REPO_CUR_PATH === removeFileFromPath(path)
-        )
-        .map(({ path, url, size }) => (
-          <div key={url}>
-            <PostRow
-              href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${path}`}
-              title={getFileFromPath(path)}
-              size={size}
-            />
-          </div>
-        ))}
+      {tree.length === 0 ? (
+        <div>No markdown files in this project</div>
+      ) : (
+        tree
+          ?.filter(
+            ({ path }) =>
+              REPO_CUR_PATH === '/' ||
+              REPO_CUR_PATH === removeFileFromPath(path)
+          )
+          .map(({ path, url, size }) => (
+            <div key={url}>
+              <PostRow
+                href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${path}`}
+                title={getFileFromPath(path)}
+                size={size}
+              />
+            </div>
+          ))
+      )}
     </div>
   );
 };

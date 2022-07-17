@@ -10,7 +10,7 @@ const InfoPanel: React.FC = () => {
   return (
     <div className="border border-[#aaa] min-h-[50px] rounded-[10px] py-4 px-6 gap-2 grid w-full justify-center items-center">
       <Link href={`/gh/${repoInfo.owner.login}`}>
-        <div>
+        <div className="mx-auto">
           <UserSmall owner={repoInfo.owner} />
         </div>
       </Link>
