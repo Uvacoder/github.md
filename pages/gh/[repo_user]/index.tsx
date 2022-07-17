@@ -5,10 +5,20 @@ import { loadUserInfo } from '@/utils';
 import Link from 'next/link';
 import { UserSmall } from '@/components';
 import { getSession } from 'next-auth/react';
+import Head from 'next/head';
 
 const UserPage: React.FC<{ repos: IUserRepos[] }> = ({ repos }) => {
   return (
     <>
+      <Head>
+        <title>
+          {repos.length > 0 ? `@${repos[0].owner.login}` : 'Проекты'}
+        </title>
+        <meta
+          name="description"
+          content={repos.length > 0 ? `@${repos[0].owner.login}` : 'Проекты'}
+        />
+      </Head>
       {repos.length > 0 ? <UserSmall owner={repos[0].owner} /> : null}
       <div className="grid gap-6 mt-4 grid-cols-2">
         {repos.map((repo) => (

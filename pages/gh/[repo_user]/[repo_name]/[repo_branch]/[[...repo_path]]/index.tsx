@@ -8,6 +8,7 @@ import {
   loadRepoStructure,
 } from '@/utils';
 import { getSession } from 'next-auth/react';
+import Head from 'next/head';
 
 const RepoPage: React.FC<{
   tree: IFolderTree[];
@@ -16,18 +17,27 @@ const RepoPage: React.FC<{
   info: IRepoInfo;
 }> = ({ tree, params, file, info }) => {
   return (
-    <RepoLayout tree={tree} params={params} file={file} info={info}>
-      {params.repo_path?.join('/').includes('.md') ? (
-        <>
-          <div
-            className="prose prose-invert"
-            dangerouslySetInnerHTML={{ __html: file }}
-          ></div>
-        </>
-      ) : (
-        <FilesList tree={tree} />
-      )}
-    </RepoLayout>
+    <>
+      <Head>
+        <title>{`${params.repo_name}/${params.repo_path}`}</title>
+        <meta
+          name="description"
+          content={`${params.repo_name}/${params.repo_path}`}
+        />
+      </Head>
+      <RepoLayout tree={tree} params={params} file={file} info={info}>
+        {params.repo_path?.join('/').includes('.md') ? (
+          <>
+            <div
+              className="prose prose-invert"
+              dangerouslySetInnerHTML={{ __html: file }}
+            ></div>
+          </>
+        ) : (
+          <FilesList tree={tree} />
+        )}
+      </RepoLayout>
+    </>
   );
 };
 

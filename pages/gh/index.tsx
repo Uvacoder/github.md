@@ -1,5 +1,6 @@
 import { ButtonLink, UserSmall } from '@/components';
 import { useSession, signIn } from 'next-auth/react';
+import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import React, { useState } from 'react';
@@ -20,6 +21,10 @@ const IntroPage: React.FC = () => {
 
   return (
     <div className="min-h-full grid gap-4 items-center text-center py-8">
+      <Head>
+        <title>Select projects</title>
+        <meta name="description" content="Select projects" />
+      </Head>
       {session ? (
         <Link href={`/gh/${session.user?.login}`}>
           <div className="flex items-center mx-auto cursor-pointer">
