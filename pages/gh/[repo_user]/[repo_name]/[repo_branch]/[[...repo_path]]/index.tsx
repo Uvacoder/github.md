@@ -7,7 +7,6 @@ import {
   loadRepoInfo,
   loadRepoStructure,
 } from '@/utils';
-import { getToken } from 'next-auth/jwt';
 import { getSession } from 'next-auth/react';
 
 const RepoPage: React.FC<{
@@ -39,7 +38,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context);
   const tree = await loadRepoStructure(params, session);
   const info = await loadRepoInfo(params, session);
-  // TODO redirect repos with 1 file only to that file
+  // redirect repos with 1 file only to that file
   if (tree.length === 1 && tree[0].path !== params.repo_path?.join('/')) {
     return {
       redirect: {

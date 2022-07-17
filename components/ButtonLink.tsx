@@ -11,6 +11,7 @@ interface IProps {
   icon?: IconProp;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
+  size?: 'default' | 'big';
 }
 
 const ButtonLink: React.FC<IProps> = ({
@@ -19,11 +20,12 @@ const ButtonLink: React.FC<IProps> = ({
   icon = faGithub,
   onClick,
   children,
+  size,
 }) => {
   return (
     <Link href={href}>
       <div>
-        <DefaultButton onClick={onClick}>
+        <DefaultButton size={size} onClick={onClick}>
           {children ?? (
             <>
               <FontAwesomeIcon className="mr-2 w-[20px] h-[20px]" icon={icon} />

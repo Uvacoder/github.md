@@ -23,7 +23,8 @@
       "@/components/*": ["components/*"],
       "@/typescript/types/*": ["typescript/types/*"],
       "@/contexts/*": ["./contexts/*"],
-      "@/utils/*": ["./utils/*"]
+      "@/utils/*": ["./utils/*"],
+      "@/public/*": ["./public/*"]
     }
   },
   "include": [
