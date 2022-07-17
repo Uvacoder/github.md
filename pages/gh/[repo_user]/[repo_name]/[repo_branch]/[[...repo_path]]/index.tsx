@@ -36,6 +36,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const params: IRepoParams = context.params || {};
   const tree = await loadRepoStructure(params);
   const info = await loadRepoInfo(params);
+  //redirect repos with 1 file only to that file
+  if (tree.length === 1) {
+    const path = tree[0].path;
+    console.log(tree[0], path);
+    const file = await loadMarkdownFileIsomorphic(params);
+    context.res.setHeader(
+      'location',
+      `/gh/${params.repo_user}/${params.repo_name}/${params.repo_branch}/${path}`
+    );
+    context.res.statusCode = 302;
+    context.res.end();
+    return { props: { tree, params, info, file } };
+  }
   if (params?.repo_path?.join('/').includes('.md')) {
     const file = await loadMarkdownFileIsomorphic(params);
     return { props: { tree, params, file, info } };

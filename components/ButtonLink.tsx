@@ -3,23 +3,34 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import DefaultButton from './DefaultButton';
 
 interface IProps {
   text?: string;
   href?: string;
   icon?: IconProp;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children?: React.ReactNode;
 }
 
 const ButtonLink: React.FC<IProps> = ({
   text = 'Click me',
   href = '',
   icon = faGithub,
+  onClick,
+  children,
 }) => {
   return (
     <Link href={href}>
-      <div className="flex mx-auto bg-white text-[#222] rounded-[10px] px-4 py-1 items-center cursor-pointer min-w-[120px] w-fit">
-        <FontAwesomeIcon className="mr-2 w-[20px] h-[20px]" icon={icon} />
-        <div>{text}</div>
+      <div>
+        <DefaultButton onClick={onClick}>
+          {children ?? (
+            <>
+              <FontAwesomeIcon className="mr-2 w-[20px] h-[20px]" icon={icon} />
+              <div>{text}</div>
+            </>
+          )}
+        </DefaultButton>
       </div>
     </Link>
   );
