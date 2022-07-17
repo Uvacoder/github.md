@@ -42,14 +42,23 @@ const IntroPage: React.FC = () => {
       )}
       <div className="my-8">or</div>
       <form className="flex justify-center">
-        <input
-          className="rounded-[5px] px-5 py-2 border bg-stone-900 border-[#666] mr-4 min-w-[300px]"
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Github @username..."
-          onChange={handleChange}
-        />
+        <div
+          className={
+            username !== ''
+              ? "relative before:content-['@'] before:left-2.5 before:top-2 before:absolute before:text-stone-300"
+              : ''
+          }
+        >
+          <input
+            className="rounded-[5px] px-5 py-2 border bg-stone-900 border-[#666] mr-4 min-w-[300px]"
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Github @username..."
+            value={username}
+            onChange={handleChange}
+          />
+        </div>
         <button
           onClick={handleSubmit}
           className="text-stone-900 bg-white rounded-[5px] px-5 py-2 border border-[#aaa]"
