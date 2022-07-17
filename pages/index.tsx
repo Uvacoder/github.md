@@ -13,15 +13,10 @@ const Home: NextPage = () => {
       </Head>
       <main className="grid items-center text-center py-4 place-content-center">
         <h1 className="text-2xl mb-4">A place for your markdown projects.</h1>
-        <h2 className="text-xl text-stone-400 mb-4">
+        <h2 className="text-xl text-stone-400">
           Blog for organizing markdown files using your Github repositories.
         </h2>
-        <div
-          className={`w-auto max-w-full relative aspect-video border rounded border-stone-500 my-10`}
-        >
-          <Image src="/Screenshot.jpg" layout="fill" className="rounded" />
-        </div>
-        <div className="flex mx-auto items-center mb-10">
+        <div className="flex mx-auto items-center my-20">
           <ButtonLink size="big" text="Select a project" href="/gh" />
         </div>
         <h2 className="text-xl text-stone-400 mb-6">
