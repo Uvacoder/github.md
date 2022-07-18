@@ -1,5 +1,5 @@
 import { ButtonLink, UserSmall } from '@/components';
-import { useSession, signIn } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -47,14 +47,17 @@ const AuthenticatedUser: React.FC<{
 }> = ({ user }) => {
   return (
     <Link href={`/gh/${user?.login}`}>
-      <div className="flex gap-2 flex-col sm:flex-row items-center mx-auto cursor-pointer">
-        <div>View your projects</div>
-        <UserSmall
-          owner={{
-            avatar_url: user?.image,
-            login: user?.login,
-          }}
-        />
+      <div className="grid place-content-center gap-4">
+        <div className="flex gap-2 flex-col sm:flex-row items-center mx-auto cursor-pointer">
+          <div>View your projects</div>
+          <UserSmall
+            owner={{
+              avatar_url: user?.image,
+              login: user?.login,
+            }}
+          />
+        </div>
+        <ButtonLink onClick={() => signOut()} text="Sign out" />
       </div>
     </Link>
   );

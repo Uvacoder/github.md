@@ -32,7 +32,7 @@ const ButtonLink: React.FC<IProps> = ({
         {children}
       </Button>
     ),
-    []
+    [children]
   );
   if (!link) {
     return getButton;
