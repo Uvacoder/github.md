@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMarkdown } from '@fortawesome/free-brands-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -6,11 +6,14 @@ import ButtonLink from './ButtonLink';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { ThemeContext } from '@/contexts';
+import dynamic from 'next/dynamic';
+
+const ThemeToggle = dynamic(() => import('../components/ThemeToggle'), {
+  ssr: false,
+});
 
 const Header: React.FC = () => {
   const { data: session } = useSession();
-  const { theme, changeTheme } = useContext(ThemeContext);
   return (
     <header
       className="bg-primary-light dark:bg-primary-dark container px-4 sm:p-0 mx-auto h-[60px] flex justify-between 
@@ -26,12 +29,7 @@ const Header: React.FC = () => {
         </div>
       </Link>
       <div className="flex items-center gap-4">
-        <div
-          className="rounded-full border bg-stone-50 dark:bg-stone-900 p-1.5 border-stone-500 dark:border-stone-400 cursor-pointer text-center"
-          onClick={() => changeTheme()}
-        >
-          {theme === 'light' ? '🌙' : '☀️'}
-        </div>
+        <ThemeToggle />
         <ButtonLink link={{ href: '/gh' }}>
           <div className="flex gap-2 items-center">
             {session ? (
