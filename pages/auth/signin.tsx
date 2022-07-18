@@ -2,6 +2,7 @@ import { ButtonLink } from '@/components';
 import React, { useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const SignInPage: React.FC = () => {
   const router = useRouter();
@@ -31,9 +32,9 @@ const SignInPage: React.FC = () => {
         <h2 className="text-xl text-stone-300 text-center mb-4">
           You can also browse any Github repository without an account
         </h2>
-        <ButtonLink size="big" link={{ href: '/gh' }}>
-          Find repository
-        </ButtonLink>
+        <Link href="/gh">
+          <div className="link mx-auto text-xl">Find repository</div>
+        </Link>
       </div>
     </div>
   );

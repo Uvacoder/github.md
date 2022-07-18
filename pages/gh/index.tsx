@@ -49,7 +49,7 @@ const AuthenticatedUser: React.FC<{
     <Link href={`/gh/${user?.login}`}>
       <div className="grid place-content-center gap-4">
         <div className="flex gap-2 flex-col sm:flex-row items-center mx-auto cursor-pointer">
-          <div>View your projects</div>
+          <div className="link">View your projects</div>
           <UserSmall
             owner={{
               avatar_url: user?.image,
@@ -57,7 +57,7 @@ const AuthenticatedUser: React.FC<{
             }}
           />
         </div>
-        <ButtonLink onClick={() => signOut()} text="Sign out" />
+        <ButtonLink onClick={() => signOut()}>Sign out</ButtonLink>
       </div>
     </Link>
   );

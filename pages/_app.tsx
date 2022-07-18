@@ -6,7 +6,7 @@ import { SessionProvider } from 'next-auth/react';
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <div className="min-h-screen">
+      <div className="min-h-screen sm:px-10 px-0">
         <Header />
         <div className="grid container mx-auto my-4 min-h-full pb-20 px-4 sm:px-0">
           <Component {...pageProps} />

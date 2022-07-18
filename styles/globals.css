@@ -20,3 +20,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.link {
+  @apply text-accent;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: center;
+}
