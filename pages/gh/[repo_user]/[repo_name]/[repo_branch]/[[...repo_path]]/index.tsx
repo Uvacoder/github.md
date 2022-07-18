@@ -45,6 +45,11 @@ export default RepoPage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const params: IRepoParams = context.params || {};
+  // experimental
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
   const session = await getSession(context);
   const tree = await loadRepoStructure(params, session);
   const info = await loadRepoInfo(params, session);

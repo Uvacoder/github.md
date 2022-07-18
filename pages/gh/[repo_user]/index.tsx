@@ -59,6 +59,10 @@ export default UserPage;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const params: IRepoParams = context.params || {};
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=60, stale-while-revalidate=120'
+  );
   const session = await getSession(context);
   const repos = await loadUserInfo(params?.repo_user || '', session);
   return { props: { repos } };
