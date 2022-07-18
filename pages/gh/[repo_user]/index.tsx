@@ -32,22 +32,16 @@ const UserPage: React.FC<{ repos: IUserRepos[] }> = ({ repos }) => {
 const RepoRow: React.FC<{ repo: IUserRepos }> = ({ repo }) => {
   return (
     <Link href={`/gh/${repo.owner.login}/${repo.name}/${repo.default_branch}`}>
-      <div className="grid place-content-stretch border border-[#bbb] py-2 px-4 rounded-[10px] cursor-pointer">
-        <div className="text-xl">{repo.name}</div>
-        <div className="text-gray-400">{repo.description}</div>
-        <div className="flex gap-2 items-end">
-          <div className="text-gray-400 text-sm mt-2">
-            ↪️{repo.default_branch}
-          </div>
+      <div className=" transition-colors grid place-content-stretch border bg-stone-100 dark:bg-transparent border-stone-500 dark:border-stone-400 py-2 px-4 rounded-[10px] cursor-pointer">
+        <div className="text-xl dark:text-gray-200">{repo.name}</div>
+        <div className="dark:text-gray-400">{repo.description}</div>
+        <div className="flex gap-2 items-end text-stone-500 dark:text-gray-400">
+          <div className="text-sm mt-2">↪️{repo.default_branch}</div>
           {repo.stargazers_count > 0 && (
-            <div className="text-gray-400 text-sm mt-2">
-              ⭐{repo.stargazers_count}
-            </div>
+            <div className="text-sm mt-2">⭐{repo.stargazers_count}</div>
           )}
           {repo.forks_count > 0 && (
-            <div className="text-gray-400 text-sm mt-2">
-              🔀{repo.forks_count}
-            </div>
+            <div className="text-sm mt-2">🔀{repo.forks_count}</div>
           )}
         </div>
       </div>

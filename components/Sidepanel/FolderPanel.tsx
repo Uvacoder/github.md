@@ -11,11 +11,11 @@ const FolderPanel: React.FC = () => {
   const rowStyles = {
     default: 'py-2 text-sm border border-transparent',
     active:
-      'py-2 text-sm border rounded-[10px] border-[#aaa] px-3 w-fit ml-[-12px]',
+      'py-2 text-sm border rounded-[10px] border-stone-500 dark:border-[#aaa] px-3 w-fit ml-[-12px]',
   };
 
   return (
-    <div className="border border-[#aaa] min-h-[50px] rounded-[10px] py-2 px-6 gap-2 grid pb-4">
+    <div className="border border-stone-500 dark:border-[#aaa] min-h-[50px] rounded-[10px] py-2 px-6 gap-2 grid pb-4">
       <ItemRow
         key={'/'}
         className={`${

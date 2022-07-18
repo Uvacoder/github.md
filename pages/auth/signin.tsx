@@ -15,8 +15,8 @@ const SignInPage: React.FC = () => {
   }, [status]);
 
   return (
-    <div className="h-full w-full grid place-content-center gap-10 mt-[10%]">
-      <h1 className="text-2xl text-center">
+    <div className="h-full w-full grid place-content-center gap-10 mt-[10vh]">
+      <h1 className="dark:text-stone-100 text-2xl text-center">
         Sign in to <code>blog.md</code> using Github account
       </h1>
       <ButtonLink
@@ -29,11 +29,13 @@ const SignInPage: React.FC = () => {
         text="Sign in with Github"
       />
       <div>
-        <h2 className="text-xl text-stone-300 text-center mb-4">
+        <h2 className="text-xl dark:text-stone-300 text-center mb-4">
           You can also browse any Github repository without an account
         </h2>
         <Link href="/gh">
-          <div className="link mx-auto text-xl">Find repository</div>
+          <div className="underline text-accent dark:text-accent-dark text-center cursor-pointer mx-auto text-xl">
+            Find repository
+          </div>
         </Link>
       </div>
     </div>

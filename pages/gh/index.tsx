@@ -49,7 +49,9 @@ const AuthenticatedUser: React.FC<{
     <Link href={`/gh/${user?.login}`}>
       <div className="grid place-content-center gap-4">
         <div className="flex gap-2 flex-col sm:flex-row items-center mx-auto cursor-pointer">
-          <div className="link">View your projects</div>
+          <div className="underline text-accent dark:text-accent-dark cursor-pointer">
+            View your projects
+          </div>
           <UserSmall
             owner={{
               avatar_url: user?.image,
@@ -78,7 +80,7 @@ const SearchForm: React.FC<{
         }
       >
         <input
-          className="rounded-[5px] px-5 py-2 border bg-stone-900 border-[#666] min-w-[250px]"
+          className=" transition-colors rounded-[5px] px-5 py-2 border dark:bg-stone-900 border-stone-500 dark:border-[#666] min-w-[250px]"
           type="text"
           name="username"
           id="username"
@@ -89,7 +91,8 @@ const SearchForm: React.FC<{
       </div>
       <button
         onClick={handleSubmit}
-        className="text-stone-900 bg-white rounded-[5px] px-5 py-2 border border-[#aaa]"
+        className=" transition-colors text-stone-900 dark:text-stone-200 bg-white dark:bg-stone-900 rounded-[5px] px-5 py-2 
+        border border-stone-500 dark:border-stone-500"
       >
         🔎 Find user
       </button>

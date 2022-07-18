@@ -8,7 +8,7 @@ const InfoPanel: React.FC = () => {
   const { repoInfo } = useContext(RepoContext);
 
   return (
-    <div className="border border-[#aaa] min-h-[50px] rounded-[10px] py-4 px-6 gap-2 grid w-full justify-center items-center">
+    <div className="border border-stone-500 dark:border-[#aaa] min-h-[50px] rounded-[10px] py-4 px-6 gap-2 grid w-full justify-center items-center">
       <Link href={`/gh/${repoInfo.owner.login}`}>
         <div className="mx-auto">
           <UserSmall owner={repoInfo.owner} />

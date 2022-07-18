@@ -19,7 +19,9 @@ const DefaultButton: React.FC<IProps> = ({
     <button
       onClick={onClick}
       className={
-        'transition flex mx-auto bg-stone-200 text-[#222] rounded-[10px] items-center justify-center cursor-pointer w-fit ' +
+        `transition flex mx-auto bg-button-light dark:bg-button-dark text-[#222] dark:text-stone-200 
+        border border-stone-500 dark:border-stone-500
+        rounded-[5px] items-center justify-center cursor-pointer w-fit ` +
         styles[size]
       }
     >

@@ -12,7 +12,7 @@ const UserSmall: React.FC<{ owner: { avatar_url: string; login: string } }> = ({
         height="30px"
         className="rounded-full"
       />
-      <div className="ml-2">@{owner.login}</div>
+      <div className="ml-2 dark:text-stone-200">@{owner.login}</div>
     </div>
   );
 };

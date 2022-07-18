@@ -29,7 +29,7 @@ const RepoPage: React.FC<{
         {params.repo_path?.join('/').includes('.md') ? (
           <>
             <div
-              className="prose prose-invert"
+              className=" transition-colors prose dark:prose-invert"
               dangerouslySetInnerHTML={{ __html: file }}
             ></div>
           </>
