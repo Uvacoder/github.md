@@ -20,7 +20,7 @@ const UserPage: React.FC<{ repos: IUserRepos[] }> = ({ repos }) => {
         />
       </Head>
       {repos.length > 0 ? <UserSmall owner={repos[0].owner} /> : null}
-      <div className="grid gap-6 mt-4 grid-cols-2">
+      <div className="grid gap-6 mt-4 sm:grid-cols-2">
         {repos.map((repo) => (
           <RepoRow key={repo.name} repo={repo} />
         ))}
@@ -30,14 +30,12 @@ const UserPage: React.FC<{ repos: IUserRepos[] }> = ({ repos }) => {
 };
 
 const RepoRow: React.FC<{ repo: IUserRepos }> = ({ repo }) => {
-  console.log(repo);
-
   return (
     <Link href={`/gh/${repo.owner.login}/${repo.name}/${repo.default_branch}`}>
-      <div className="grid place-content-start border border-[#bbb] py-2 pb-10 px-4 rounded-[10px] cursor-pointer">
+      <div className="grid place-content-stretch border border-[#bbb] py-2 px-4 rounded-[10px] cursor-pointer">
         <div className="text-xl">{repo.name}</div>
         <div className="text-gray-400">{repo.description}</div>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-end">
           <div className="text-gray-400 text-sm mt-2">
             ↪️{repo.default_branch}
           </div>

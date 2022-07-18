@@ -17,16 +17,18 @@ const Home: NextPage = () => {
           Blog for organizing markdown files using your Github repositories.
         </h2>
         <div className="flex mx-auto items-center my-20">
-          <ButtonLink size="big" text="Select a project" href="/gh" />
+          <ButtonLink size="big" link={{ href: '/gh' }}>
+            Select a project
+          </ButtonLink>
         </div>
         <h2 className="text-xl text-stone-400 mb-6">
-          🔨Built with NextJS, TypeScript, Tailwind
+          🔨 Built with NextJS, TypeScript, Tailwind
         </h2>
-        <div className="flex mx-auto items-center">
-          <h2 className="text-xl text-stone-200 mr-2">Check out our Github</h2>
+        <div className="grid gap-4 sm:flex mx-auto items-center">
+          <h2 className="text-xl text-stone-200">Check out our Github</h2>
           <ButtonLink
             text="Visit our repo"
-            href="https://github.com/ilyasudakov"
+            link={{ href: 'https://github.com/ilyasudakov', newTab: true }}
           />
         </div>
       </main>

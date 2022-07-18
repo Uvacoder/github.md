@@ -54,15 +54,15 @@ const RepoLayout: React.FC<{
         repoInfo: info,
       }}
     >
-      <div className="grid gap-4 grid-cols-12 mx-auto w-full">
-        <div className="col-span-3">
+      <div className="grid gap-4 lg:grid-cols-12 mx-auto w-full">
+        <div className="lg:col-span-3">
           <FoldersContext.Provider
             value={{ folders: getOnlyFolders(tree, params?.repo_path ?? []) }}
           >
             <Sidepanel />
           </FoldersContext.Provider>
         </div>
-        <div className="col-span-9 mx-4">{children}</div>
+        <div className="lg:col-span-9 mx-4">{children}</div>
       </div>
     </RepoContext.Provider>
   );

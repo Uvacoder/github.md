@@ -26,48 +26,70 @@ const IntroPage: React.FC = () => {
         <meta name="description" content="Select projects" />
       </Head>
       {session ? (
-        <Link href={`/gh/${session.user?.login}`}>
-          <div className="flex items-center mx-auto cursor-pointer">
-            <div className="mr-4">View your projects</div>
-            <UserSmall
-              owner={{
-                avatar_url: session.user?.image,
-                login: session.user?.login,
-              }}
-            />
-          </div>
-        </Link>
+        <AuthenticatedUser user={session.user} />
       ) : (
         <ButtonLink onClick={() => signIn()} text="Sign in with Github" />
       )}
       <div className="my-8">or</div>
-      <form className="flex justify-center">
-        <div
-          className={
-            username !== ''
-              ? "relative before:content-['@'] before:left-2.5 before:top-2 before:absolute before:text-stone-300"
-              : ''
-          }
-        >
-          <input
-            className="rounded-[5px] px-5 py-2 border bg-stone-900 border-[#666] mr-4 min-w-[300px]"
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Github @username..."
-            value={username}
-            onChange={handleChange}
-          />
-        </div>
-        <button
-          onClick={handleSubmit}
-          className="text-stone-900 bg-white rounded-[5px] px-5 py-2 border border-[#aaa]"
-        >
-          🔎 Find user
-        </button>
-      </form>
+      <SearchForm
+        username={username}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };
 
 export default IntroPage;
+
+const AuthenticatedUser: React.FC<{
+  user: { login: string; image: string };
+}> = ({ user }) => {
+  return (
+    <Link href={`/gh/${user?.login}`}>
+      <div className="flex gap-2 flex-col sm:flex-row items-center mx-auto cursor-pointer">
+        <div>View your projects</div>
+        <UserSmall
+          owner={{
+            avatar_url: user?.image,
+            login: user?.login,
+          }}
+        />
+      </div>
+    </Link>
+  );
+};
+
+const SearchForm: React.FC<{
+  username: string;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  handleSubmit: React.MouseEventHandler<HTMLButtonElement>;
+}> = ({ username, handleChange, handleSubmit }) => {
+  return (
+    <form className="flex mx-auto justify-center flex-col sm:flex-row gap-4 items-stretch max-w-sm sm:max-w-none">
+      <div
+        className={
+          username !== ''
+            ? "w-fit relative before:content-['@'] before:left-2.5 before:top-2 before:absolute before:text-stone-500"
+            : 'w-fit'
+        }
+      >
+        <input
+          className="rounded-[5px] px-5 py-2 border bg-stone-900 border-[#666] min-w-[250px]"
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Github @username..."
+          value={username}
+          onChange={handleChange}
+        />
+      </div>
+      <button
+        onClick={handleSubmit}
+        className="text-stone-900 bg-white rounded-[5px] px-5 py-2 border border-[#aaa]"
+      >
+        🔎 Find user
+      </button>
+    </form>
+  );
+};

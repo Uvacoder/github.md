@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <SessionProvider session={session}>
       <div className="min-h-screen">
         <Header />
-        <div className="grid container mx-auto my-4 min-h-full pb-20">
+        <div className="grid container mx-auto my-4 min-h-full pb-20 px-4 sm:px-0">
           <Component {...pageProps} />
         </div>
       </div>

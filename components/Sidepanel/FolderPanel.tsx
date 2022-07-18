@@ -23,7 +23,7 @@ const FolderPanel: React.FC = () => {
         } mt-2`}
         href={`/gh/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/`}
         icon={faHome}
-        title={'Home'}
+        title="All files"
       />
       {folders.map(({ path, active }) => (
         <ItemRow

@@ -15,7 +15,10 @@ const InfoPanel: React.FC = () => {
         </div>
       </Link>
       <div className="mb-4">{repoInfo.description}</div>
-      <ButtonLink text="View on Github" href={repoInfo.html_url} />
+      <ButtonLink
+        text="View on Github"
+        link={{ href: repoInfo.html_url, newTab: true }}
+      />
     </div>
   );
 };
