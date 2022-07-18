@@ -11,11 +11,18 @@ const ThemeToggle = () => {
 
   return (
     <div
-      className="rounded-full border bg-stone-50 dark:bg-stone-900 p-2 border-stone-500
+      className="flex items-center justify-center rounded-full border bg-stone-50 dark:bg-stone-900 p-2 border-stone-500
        dark:border-stone-400 cursor-pointer text-center"
+      style={{
+        width: '35px',
+        height: '35px',
+        textAlign: 'center',
+        verticalAlign: 'middle',
+        margin: 'auto',
+      }}
       onClick={() => setActiveTheme(inactiveTheme)}
     >
-      {activeTheme === 'light' ? '🌙' : '☀️'}
+      <div>{activeTheme === 'light' ? '🌙' : '☀️'}</div>
     </div>
   );
 };
