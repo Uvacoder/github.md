@@ -24,15 +24,12 @@ const ButtonLink: React.FC<IProps> = ({
   link,
   icon = faGithub,
   children,
-  ...props
+  ..._props
 }) => {
+  const props = { icon, text, link, children, ..._props };
   const getButton = useMemo(
-    () => (
-      <Button {...props} icon={icon} text={text}>
-        {children}
-      </Button>
-    ),
-    [children]
+    () => <Button {...props}>{children}</Button>,
+    [children, props.size]
   );
   if (!link) {
     return getButton;

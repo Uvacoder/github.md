@@ -12,12 +12,17 @@ const DefaultButton: React.FC<IProps> = ({
   size = 'default',
 }) => {
   const styles = {
-    default:
-      'flex mx-auto bg-white text-[#222] rounded-[10px] px-4 py-1 items-center cursor-pointer min-w-[120px] w-fit',
-    big: 'flex mx-auto bg-white text-[#222] rounded-[10px] px-5 py-4 items-center cursor-pointer min-w-[150px] w-fit',
+    default: 'px-4 py-1 min-w-[120px]',
+    big: 'px-5 py-4 min-w-[150px]',
   };
   return (
-    <button onClick={onClick} className={styles[size]}>
+    <button
+      onClick={onClick}
+      className={
+        'transition flex mx-auto bg-white text-[#222] rounded-[10px] items-center cursor-pointer w-fit ' +
+        styles[size]
+      }
+    >
       {children}
     </button>
   );

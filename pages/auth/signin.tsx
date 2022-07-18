@@ -14,7 +14,10 @@ const SignInPage: React.FC = () => {
   }, [status]);
 
   return (
-    <div className="h-full w-full grid place-content-center">
+    <div className="h-full w-full grid place-content-center gap-10 mt-[10%]">
+      <h1 className="text-2xl text-center">
+        Sign in to <code>blog.md</code> using Github account
+      </h1>
       <ButtonLink
         size="big"
         onClick={() =>
@@ -24,6 +27,14 @@ const SignInPage: React.FC = () => {
         }
         text="Sign in with Github"
       />
+      <div>
+        <h2 className="text-xl text-stone-300 text-center mb-4">
+          You can also browse any Github repository without an account
+        </h2>
+        <ButtonLink size="big" link={{ href: '/gh' }}>
+          Find repository
+        </ButtonLink>
+      </div>
     </div>
   );
 };
