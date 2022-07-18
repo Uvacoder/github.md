@@ -16,7 +16,6 @@ interface IProps extends IBasicProps {
   link?: {
     href: string;
     newTab?: boolean;
-    isOutside?: boolean;
   };
 }
 
@@ -38,13 +37,9 @@ const ButtonLink: React.FC<IProps> = ({
   if (!link) {
     return getButton;
   }
-  if (link.isOutside || link.newTab) {
+  if (link.newTab) {
     return (
-      <a
-        href={link.href}
-        target={link.newTab ? '_blank' : ''}
-        rel={link.newTab ? 'noopener noreferrer' : ''}
-      >
+      <a href={link.href} target="_blank" rel="noopener noreferrer">
         {getButton}
       </a>
     );
