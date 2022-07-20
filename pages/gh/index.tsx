@@ -46,8 +46,8 @@ const AuthenticatedUser: React.FC<{
   user: { login: string; image: string };
 }> = ({ user }) => {
   return (
-    <Link href={`/gh/${user?.login}`}>
-      <div className="grid place-content-center gap-4">
+    <div className="grid place-content-center gap-4">
+      <Link href={`/gh/${user?.login}`}>
         <div className="flex gap-2 flex-col sm:flex-row items-center mx-auto cursor-pointer">
           <div className="underline text-accent dark:text-accent-dark cursor-pointer">
             View your projects
@@ -59,9 +59,9 @@ const AuthenticatedUser: React.FC<{
             }}
           />
         </div>
-        <ButtonLink onClick={() => signOut()}>Sign out</ButtonLink>
-      </div>
-    </Link>
+      </Link>
+      <ButtonLink onClick={() => signOut()}>Sign out</ButtonLink>
+    </div>
   );
 };
 

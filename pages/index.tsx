@@ -7,17 +7,15 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>blog.md</title>
-        <meta name="description" content="blog.md" />
+        <title>repo.md</title>
+        <meta name="description" content="repo.md" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="grid items-center text-center py-4 place-content-center dark:text-stone-400">
         <h1 className="text-3xl mb-4 dark:text-stone-100">
           A place for your markdown projects.
         </h1>
-        <h2 className="text-xl">
-          Blog for organizing markdown files using your Github repositories.
-        </h2>
+        <h2 className="text-xl">View your Github project as a blog.</h2>
         <div className="flex mx-auto items-center my-20">
           <ButtonLink size="big" link={{ href: '/gh' }}>
             Select a project

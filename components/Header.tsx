@@ -25,7 +25,7 @@ const Header: React.FC = () => {
             className="mr-2 w-[3rem] h-[3rem] "
             icon={faMarkdown}
           />
-          <span className="text-2xl hidden sm:block">blog.md</span>
+          <span className="text-2xl hidden sm:block">repo.md</span>
         </div>
       </Link>
       <div className="flex items-center gap-4">

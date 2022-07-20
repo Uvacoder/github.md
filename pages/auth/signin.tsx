@@ -17,7 +17,7 @@ const SignInPage: React.FC = () => {
   return (
     <div className="h-full w-full grid place-content-center gap-10 mt-[10vh]">
       <h1 className="dark:text-stone-100 text-2xl text-center">
-        Sign in to <code>blog.md</code> using Github account
+        Sign in to <code>repo.md</code> using Github account
       </h1>
       <ButtonLink
         size="big"
