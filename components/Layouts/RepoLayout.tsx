@@ -2,7 +2,7 @@ import React from 'react';
 import { FoldersContext, RepoContext } from '@/contexts';
 import { IFolderTree, IRepoInfo, IRepoParams } from '@/typescript/types';
 import { findMarkdownFiles, removeFileFromPath } from '@/utils';
-import Sidepanel from '../Sidepanel/Sidepanel';
+import Sidepanel from '../sidepanel/Sidepanel';
 
 const getUniqueFolders = (tree: IFolderTree[], cur_path: string) => {
   const uniqueFolders: any = {};
@@ -47,10 +47,10 @@ const RepoLayout: React.FC<{
   return (
     <RepoContext.Provider
       value={{
-        REPO_OWNER: params?.repo_user || '',
-        REPO_NAME: params?.repo_name || '',
-        REPO_BRANCH: params?.repo_branch || '',
-        REPO_CUR_PATH: params?.repo_path?.join('/') ?? '/',
+        REPO_OWNER: params.repo_user || '',
+        REPO_NAME: params.repo_name || '',
+        REPO_BRANCH: params.repo_branch || '',
+        REPO_CUR_PATH: params.repo_path?.join('/') ?? '/',
         repoInfo: info,
       }}
     >
