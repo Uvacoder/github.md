@@ -1,2 +1,1 @@
-export { default as RepoContext } from './RepoContext';
-export { default as ThemeContext } from './ThemeContext';
+export { default as ThemeContext } from "./ThemeContext";

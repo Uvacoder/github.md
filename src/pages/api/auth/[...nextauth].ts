@@ -1,10 +1,12 @@
-import NextAuth from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 export default NextAuth({
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
+      // @ts-ignore
       clientId: process.env.GITHUB_ID,
+      // @ts-ignore
       clientSecret: process.env.GITHUB_SECRET,
       async profile(profile) {
         return {
@@ -27,6 +29,7 @@ export default NextAuth({
       }
       return token;
     },
+    // @ts-ignore
     async session({ session, token }) {
       return {
         ...session,
@@ -36,6 +39,6 @@ export default NextAuth({
     },
   },
   pages: {
-    signIn: '/auth/signin',
+    signIn: "/auth/signin",
   },
 });

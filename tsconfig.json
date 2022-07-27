@@ -31,8 +31,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/api/auth/[...nextauth].js",
-    "src/components/ThemeToggle.js"
+    "src/pages/api/auth/[...nextauth].ts",
+    "src/components/ThemeToggle.tsx"
   ],
   "exclude": ["node_modules"]
 }
