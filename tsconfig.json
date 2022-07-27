@@ -16,14 +16,14 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components": ["components/index"],
-      "@/typescript/types": ["typescript/types/index"],
-      "@/contexts": ["./contexts/index"],
-      "@/utils": ["./utils/index"],
-      "@/components/*": ["components/*"],
-      "@/typescript/types/*": ["typescript/types/*"],
-      "@/contexts/*": ["./contexts/*"],
-      "@/utils/*": ["./utils/*"],
+      "@/components": ["src/components/index"],
+      "@/types": ["src/types/index"],
+      "@/contexts": ["./src/contexts/index"],
+      "@/utils": ["./src/utils/index"],
+      "@/components/*": ["src/components/*"],
+      "@/types/*": ["src/types/*"],
+      "@/contexts/*": ["./src/contexts/*"],
+      "@/utils/*": ["./src/utils/*"],
       "@/public/*": ["./public/*"]
     }
   },
@@ -31,8 +31,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/api/auth/[...nextauth].js",
-    "components/ThemeToggle.js"
+    "src/pages/api/auth/[...nextauth].js",
+    "src/components/ThemeToggle.js"
   ],
   "exclude": ["node_modules"]
 }

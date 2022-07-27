@@ -11,14 +11,14 @@ const customJestConfig = {
   coverageReporters: ['json', 'html'],
   moduleDirectories: ['node_modules', '<rootDir>/'],
   moduleNameMapper: {
-    '@/components': '<rootDir>/components/index.tsx',
-    '@/typescript/types': '<rootDir>/typescript/types/index.ts',
-    '@/contexts': '<rootDir>/contexts/index.ts',
-    '@/utils': '<rootDir>/utils/index.ts',
-    '@/public/(.*)$': '<rootDir>/public/$1',
+    '@/components': '<rootDir>/src/components/index.tsx',
+    '@/typescript/types': '<rootDir>/src/typescript/types/index.ts',
+    '@/contexts': '<rootDir>/src/contexts/index.ts',
+    '@/utils': '<rootDir>/src/utils/index.ts',
+    '@/public/(.*)$': '<rootDir>/src/public/$1',
   },
   // testEnvironment: 'jest-environment-jsdom', // DEFAULT
-  testEnvironment: '<rootDir>/test/custom-test-env.js',
+  testEnvironment: '<rootDir>/src/test/custom-test-env.js',
 };
 
 module.exports = createJestConfig(customJestConfig);
