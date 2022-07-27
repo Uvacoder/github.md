@@ -16,6 +16,9 @@ const RepoPage: React.FC<{
   file: string;
   info: IRepoInfo;
 }> = ({ tree, params, file, info }) => {
+  const isMarkdownFile = (path: string[] = []) =>
+    path.join('/').includes('.md');
+
   return (
     <>
       <Head>
@@ -26,13 +29,8 @@ const RepoPage: React.FC<{
         />
       </Head>
       <RepoLayout tree={tree} params={params} file={file} info={info}>
-        {params.repo_path?.join('/').includes('.md') ? (
-          <>
-            <div
-              className=" transition-colors prose dark:prose-invert"
-              dangerouslySetInnerHTML={{ __html: file }}
-            ></div>
-          </>
+        {isMarkdownFile(params.repo_path) ? (
+          <MarkdownBlock file={file} />
         ) : (
           <FilesList tree={tree} />
         )}
@@ -43,9 +41,18 @@ const RepoPage: React.FC<{
 
 export default RepoPage;
 
+const MarkdownBlock: React.FC<{ file: string }> = ({ file }) => {
+  return (
+    <div
+      className=" transition-colors prose dark:prose-invert"
+      dangerouslySetInnerHTML={{ __html: file }}
+    />
+  );
+};
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const params: IRepoParams = context.params || {};
-  // experimental
+  // experimental caching
   context.res.setHeader(
     'Cache-Control',
     'public, s-maxage=10, stale-while-revalidate=59'
