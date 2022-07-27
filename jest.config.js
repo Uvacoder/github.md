@@ -15,7 +15,7 @@ const customJestConfig = {
     '@/typescript/types': '<rootDir>/src/typescript/types/index.ts',
     '@/contexts': '<rootDir>/src/contexts/index.ts',
     '@/utils': '<rootDir>/src/utils/index.ts',
-    '@/public/(.*)$': '<rootDir>/src/public/$1',
+    '@/public/(.*)$': '<rootDir>/public/$1',
   },
   // testEnvironment: 'jest-environment-jsdom', // DEFAULT
   testEnvironment: '<rootDir>/src/test/custom-test-env.js',
