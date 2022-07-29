@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { Header } from '@/components';
+// import { Header } from '@/components';
 
 import { useSession } from 'next-auth/react';
 jest.mock('next-auth/react');
