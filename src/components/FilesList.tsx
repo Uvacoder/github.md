@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import PostRow from "./PostRow";
+import PostRow from './PostRow';
 
-import { IFolderTree } from "@/types";
-import { getFileFromPath, removeFileFromPath } from "@/utils";
-import { RepoContext } from "./layout/RepoLayout";
+import { IFolderTree } from '@/types';
+import { getFileFromPath, removeFileFromPath } from '@/utils';
+import { RepoContext } from './Layout/RepoLayout';
 
 const FilesList: React.FC<{ tree: IFolderTree[] }> = ({ tree }) => {
-  const { owner, branch, name, curPath = "" } = useContext(RepoContext);
+  const { owner, branch, name, curPath = '' } = useContext(RepoContext);
   return (
     <div className="grid gap-10">
       {tree.length === 0 ? (
@@ -16,7 +16,7 @@ const FilesList: React.FC<{ tree: IFolderTree[] }> = ({ tree }) => {
         tree
           ?.filter(
             ({ path }) =>
-              curPath === "/" || curPath === removeFileFromPath(path)
+              curPath === '/' || curPath === removeFileFromPath(path)
           )
           .map(({ path, url, size }) => (
             <div key={url}>
