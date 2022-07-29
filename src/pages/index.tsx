@@ -46,10 +46,9 @@ const SelectProject: React.FC = () => {
 
 const BuiltWith: React.FC = () => {
   return (
-    <>
-      <h2 className="text-xl mb-6">
-        🔨 Built with NextJS, TypeScript, Tailwind
-      </h2>
+    <div className="flex flex-col">
+      <h2 className="text mb-6">🔨 Built with NextJS, TypeScript, Tailwind.</h2>
+      <h2 className="text mb-6">🧪 Tested with Jest, RTL.</h2>
       <div className="grid gap-4 sm:flex mx-auto items-center">
         <h2 className="text-xl dark:text-stone-200">Check out our Github</h2>
         <ButtonLink
@@ -57,6 +56,6 @@ const BuiltWith: React.FC = () => {
           link={{ href: 'https://github.com/ilyasudakov', newTab: true }}
         />
       </div>
-    </>
+    </div>
   );
 };
