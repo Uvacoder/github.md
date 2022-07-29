@@ -8,7 +8,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
-const ThemeToggle = dynamic(() => import('../ui/ThemeToggle'), {
+const ThemeToggle = dynamic(() => import('@/components/ui/ThemeToggle'), {
   ssr: false,
 });
 
