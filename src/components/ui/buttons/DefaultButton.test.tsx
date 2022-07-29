@@ -4,8 +4,8 @@ import { DefaultButton } from '@/components';
 
 describe('DefaultButton', () => {
   it('renders a button w/ children', async () => {
-    render(<DefaultButton children="Children" />);
-    const content = await screen.getByText('Children');
+    render(<DefaultButton />);
+    const content = await screen.getByRole('button');
     expect(content).toBeInTheDocument();
   });
 });

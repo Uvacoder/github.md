@@ -24,10 +24,9 @@ describe('ButtonLink', () => {
         link={{
           href: '/local-path',
         }}
-        children="link"
       />
     );
-    const link = await screen.getByText('link');
+    const link = await screen.getByRole('button');
     expect(link.parentElement).toHaveAttribute('href', '/local-path');
   });
 });
