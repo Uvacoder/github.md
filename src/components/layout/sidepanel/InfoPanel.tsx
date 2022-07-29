@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import React, { useContext } from 'react';
 
-import ButtonLink from '../../ui/buttons/ButtonLink';
-import UserSmall from '../../ui/UserSmall';
+import ButtonLink from '../../ui/Buttons/ButtonLink';
+import UserSmall from '../../ui/User/UserSmall';
 
-import { RepoContext } from '../RepoLayout';
+import { RepoContext } from '../Repository/RepoLayout';
 
 const InfoPanel: React.FC = () => {
   const {

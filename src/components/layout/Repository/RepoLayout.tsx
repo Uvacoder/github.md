@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Sidepanel from './Sidepanel/Sidepanel';
+import Sidepanel from '../Sidepanel/Sidepanel';
 
 import { IFolderTree, IRepoInfo, IRepoParams } from '@/types';
 import { findMarkdownFiles, removeFileFromPath } from '@/utils';

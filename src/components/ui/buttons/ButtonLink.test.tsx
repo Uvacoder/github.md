@@ -6,4 +6,28 @@ describe('ButtonLink', () => {
   it('renders a button', () => {
     render(<ButtonLink />);
   });
+  it('renders <a /> tag', async () => {
+    render(
+      <ButtonLink
+        link={{
+          newTab: true,
+          href: 'https://github.com',
+        }}
+      />
+    );
+    const link = await screen.getByRole('link');
+    expect(link).toBeInTheDocument();
+  });
+  it('renders local Link', async () => {
+    render(
+      <ButtonLink
+        link={{
+          href: '/local-path',
+        }}
+        children="link"
+      />
+    );
+    const link = await screen.getByText('link');
+    expect(link.parentElement).toHaveAttribute('href', '/local-path');
+  });
 });

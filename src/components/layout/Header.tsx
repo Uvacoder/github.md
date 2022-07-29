@@ -2,13 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMarkdown } from '@fortawesome/free-brands-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import ButtonLink from '../ui/buttons/ButtonLink';
+import ButtonLink from '../ui/Buttons/ButtonLink';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
-const ThemeToggle = dynamic(() => import('../ThemeToggle'), {
+const ThemeToggle = dynamic(() => import('../ui/ThemeToggle'), {
   ssr: false,
 });
 
