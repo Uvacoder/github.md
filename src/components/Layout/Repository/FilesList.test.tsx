@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 import { FilesList } from '@/components';
 import { RepoContext } from './RepoLayout';
 import React from 'react';
-// import { IRepoInfo } from '@/types';
 
 const customRender = (
   ui: React.ReactNode,

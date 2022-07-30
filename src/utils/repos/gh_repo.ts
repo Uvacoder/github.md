@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { IFolderTree, IRepoParams } from '@/types';
 import { Session } from 'next-auth';
-import { getRawFileLocation } from './helpers';
+import { getRawFileLocation } from '../helpers';
 
 export const findMarkdownFiles = (
   tree: IFolderTree[],
