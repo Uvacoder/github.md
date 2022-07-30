@@ -18,7 +18,8 @@ const customJestConfig = {
     '@/public/(.*)$': '<rootDir>/public/$1',
   },
   // testEnvironment: 'jest-environment-jsdom', // DEFAULT
-  testEnvironment: '<rootDir>/src/test/custom-test-env.js',
+  testEnvironment: '<rootDir>/src/tests/custom-test-env.js',
+  setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.tsx'],
 };
 
 module.exports = createJestConfig(customJestConfig);
