@@ -1,6 +1,6 @@
-import { ButtonLink } from '@/components';
-import type { NextPage } from 'next';
-import Head from 'next/head';
+import { ButtonLink } from "@/components";
+import type { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   return (
@@ -37,7 +37,7 @@ const SubTitle: React.FC = () => {
 const SelectProject: React.FC = () => {
   return (
     <div className="flex mx-auto items-center my-20">
-      <ButtonLink size="big" link={{ href: '/gh' }}>
+      <ButtonLink size="big" link={{ href: "/gh" }}>
         Select a project
       </ButtonLink>
     </div>
@@ -50,10 +50,9 @@ const BuiltWith: React.FC = () => {
       <h2 className="text mb-6">🔨 Built with NextJS, TypeScript, Tailwind.</h2>
       <h2 className="text mb-6">🧪 Tested with Jest, RTL.</h2>
       <div className="grid gap-4 sm:flex mx-auto items-center">
-        <h2 className="text-xl dark:text-stone-200">Check out our Github</h2>
         <ButtonLink
-          text="Visit our repo"
-          link={{ href: 'https://github.com/ilyasudakov', newTab: true }}
+          text="Check out Github"
+          link={{ href: "https://github.com/ilyasudakov", newTab: true }}
         />
       </div>
     </div>
